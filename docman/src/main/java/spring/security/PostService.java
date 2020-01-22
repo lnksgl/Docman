@@ -41,6 +41,11 @@ public class PostService {
         return mapFromPostToDto(post);
     }
 
+    @Transactional
+    public void deletePost(long id) {
+        postRepository.delete(postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
+    }
+
     private PostDto mapFromPostToDto(Post post) {
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());

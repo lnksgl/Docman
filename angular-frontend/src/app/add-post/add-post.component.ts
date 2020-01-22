@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, NgModel} from '@angular/forms';
 import {PostPayload} from './post-payload';
 import {AddPostService} from '../add-post.service';
 import {Router} from '@angular/router';
@@ -41,5 +41,9 @@ export class AddPostComponent implements OnInit {
     }, error => {
       console.log('Failure Response');
     });
+  }
+
+  assertTitle() {
+    return this.addPostForm.get('title').value;
   }
 }
