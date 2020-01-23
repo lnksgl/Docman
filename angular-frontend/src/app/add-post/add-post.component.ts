@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgModel} from '@angular/forms';
 import {PostPayload} from './post-payload';
 import {AddPostService} from '../add-post.service';
@@ -15,16 +15,19 @@ export class AddPostComponent implements OnInit {
   addPostForm: FormGroup;
   postPayload: PostPayload;
   title = new FormControl('');
+  category = new FormControl('');
   body = new FormControl('');
 
   constructor(private addPostService: AddPostService, private router: Router) {
     this.addPostForm = new FormGroup({
       title: this.title,
+      category: this.category,
       body: this.body
     });
     this.postPayload = {
       id: '',
       content: '',
+      category: '',
       title: '',
       username: ''
     };
@@ -36,6 +39,7 @@ export class AddPostComponent implements OnInit {
   addPost() {
     this.postPayload.content = this.addPostForm.get('body').value;
     this.postPayload.title = this.addPostForm.get('title').value;
+    this.postPayload.category = this.addPostForm.get('category').value;
     this.addPostService.addPost(this.postPayload).subscribe(data => {
       this.router.navigateByUrl('/');
     }, error => {
@@ -43,7 +47,11 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-  assertTitle() {
-    return this.addPostForm.get('title').value;
+  assertValidate() {
+    if (this.addPostForm.get('title').value != '' && this.addPostForm.get('category').value != '' &&
+      this.addPostForm.get('body').value != '') {
+      return this.addPostForm.get('title').value;
+    }
+    return '';
   }
 }

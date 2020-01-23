@@ -1,3 +1,4 @@
+
 <div class="content">
   <div class="container">
     <div class="row">
@@ -8,6 +9,7 @@
           <p>by {{post.username}}</p>
         </span>
         <hr>
+        <p [innerHTML]="post.category"></p>
         <p [innerHTML]="post.content"></p>
         <hr>
       </div>

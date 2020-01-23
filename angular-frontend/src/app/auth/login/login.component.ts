@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {LoginPayload} from '../login-payload';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {isEmpty} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -34,11 +35,17 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginPayload).subscribe(data => {
       if (data) {
-        console.log('login success');
         this.router.navigateByUrl('/home');
       } else {
         console.log('login failed');
       }
     });
+  }
+
+  assertValidate() {
+    if (this.loginForm.get('username').value && this.loginForm.get('password').value) {
+      return this.loginForm.get('username').value;
+    }
+    return '';
   }
 }

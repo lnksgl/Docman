@@ -17,6 +17,7 @@ import {EditorModule} from '@tinymce/tinymce-angular';
 import {HttpClientInterceptor} from './http-client-interceptor';
 import {PostComponent} from './post/post.component';
 import {AuthGuard} from './auth.guard';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -42,10 +43,11 @@ import {AuthGuard} from './auth.guard';
       {path: 'post/:id', component: PostComponent},
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard]}
+      {path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard]},
     ]),
     HttpClientModule,
-    EditorModule
+    EditorModule,
+    NgSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]

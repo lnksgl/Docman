@@ -10,11 +10,15 @@
         <input type="text" name="title" [formControlName]="'title'" class="form-control" placeholder="Title">
       </div>
       <div class="form-group">
+        <label class="post-title">Category</label>
+        <input type="text" name="category" [formControlName]="'category'" class="form-control" placeholder="Category">
+      </div>
+      <div class="form-group">
         <label class="post-content">Body</label>
         <editor [formControlName]="'body'" [init]="{plugins: 'link'}"></editor>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="assertTitle() === ''">Post</button>
+        <button type="submit" class="btn btn-primary" [disabled]="assertValidate() === ''">Post</button>
       </div>
     </form >
   </div>

@@ -26,6 +26,8 @@ public class Post {
     @Column
     @NotBlank
     private String username;
+    @Column
+    private String category;
 
     public String getTitle() {
         return title;
@@ -73,5 +75,13 @@ public class Post {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

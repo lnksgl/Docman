@@ -31,8 +31,13 @@ public class PostService {
 
     @Transactional
     public void createPost(PostDto postDto) {
-        Post post = mapFromDtoToPost(postDto);
-        postRepository.save(post);
+        postRepository.save(mapFromDtoToPost(postDto));
+    }
+
+    @Transactional
+    public void updatePost(PostDto postDto) {
+        postRepository.updatePost(postDto.getContent(), postDto.getTitle(), Instant.now(), postDto.getCategory(),
+                postDto.getId());
     }
 
     @Transactional
@@ -46,11 +51,32 @@ public class PostService {
         postRepository.delete(postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
     }
 
+    @Transactional
+    public List<PostDto> showCategoryPosts(String category) {
+        return postsStream(postRepository.findByCategory(category));
+    }
+
+    @Transactional
+    public List<PostDto> showTitlePost(String title) {
+        return postsStream(postRepository.findByTitle(title));
+    }
+
+    @Transactional
+    public List<PostDto> showUsernamePosts(String username) {
+        return postsStream(postRepository.findByUsername(username));
+    }
+
+    @Transactional
+    public List<PostDto> postsStream(List<Post> posts) {
+        return posts.stream().map(this::mapFromPostToDto).collect(toList());
+    }
+
     private PostDto mapFromPostToDto(Post post) {
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());
+        postDto.setCategory(post.getCategory());
         postDto.setUsername(post.getUsername());
         return postDto;
     }
@@ -59,6 +85,7 @@ public class PostService {
         Post post = new Post();
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
+        post.setCategory(postDto.getCategory());
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
         post.setCreatedOn(Instant.now());
         post.setUsername(loggedInUser.getUsername());

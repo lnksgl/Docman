@@ -5,6 +5,7 @@ public class  PostDto {
     private Long id;
     private String content;
     private String title;
+    private String category;
     private String username;
 
     public Long getId() {
@@ -37,5 +38,13 @@ public class  PostDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

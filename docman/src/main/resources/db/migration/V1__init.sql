@@ -6,6 +6,7 @@ create table post (
     created_on timestamp,
     title varchar(255) not null,
     updated_on timestamp,
+    category text not null,
     username varchar(255) not null,
     primary key (id)
 );

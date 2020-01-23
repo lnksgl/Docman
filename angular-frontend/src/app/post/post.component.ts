@@ -26,5 +26,4 @@ export class PostComponent implements OnInit {
       console.log('Failure Response');
     });
   }
-
 }

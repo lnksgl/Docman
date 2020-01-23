@@ -6,10 +6,12 @@
         <div>
           <i class="fas fa-user"></i> Author: <p>{{post.username}}</p>
         </div>
+        <p [innerHTML]="post.category"></p>
         <p [innerHTML]="post.content"></p>
         <div>
           <a type="button" href="/post/{{post.id}}" class="read-more btn btn-default">Read More</a>
           <a type="button" href="/delete/{{post.id}}" class="read-more btn btn-default">Delete</a>
+          <a type="button" href="/edit/{{post.id}}" class="read-more btn btn-default">Edit</a>
         </div>
         <hr>
       </div>
