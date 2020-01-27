@@ -1,5 +1,8 @@
 package spring.service;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,20 +19,18 @@ import spring.security.JwtProvider;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtProvider jwtProvider;
+    UserRepository userRepository;
+    PasswordEncoder passwordEncoder;
+    AuthenticationManager authenticationManager;
+    JwtProvider jwtProvider;
 
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
-        user.setUserName(registerRequest.getUsername());
+        user.setUsername(registerRequest.getUsername());
         user.setPassword(encodePassword(registerRequest.getPassword()));
         user.setEmail(registerRequest.getEmail());
 
@@ -42,11 +43,11 @@ public class AuthService {
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authenticate =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(),
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String authenticationToken = jwtProvider.generateToken();
-        return new AuthenticationResponse(authenticationToken, loginRequest.getUserName());
+        return new AuthenticationResponse(authenticationToken, loginRequest.getUsername());
     }
 
     public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {

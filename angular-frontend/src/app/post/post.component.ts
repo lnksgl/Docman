@@ -25,5 +25,7 @@ export class PostComponent implements OnInit {
     }, (error: any) => {
       console.log('Failure Response');
     });
+
+    this.postService.deletePost(this.permaLink);
   }
 }

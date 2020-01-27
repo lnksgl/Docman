@@ -1,29 +1,17 @@
 package spring.service;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
+@AllArgsConstructor
+@Setter
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationResponse {
 
-    private String authenticationToken;
-    private String username;
-
-    AuthenticationResponse(String authenticationToken, String username) {
-        this.authenticationToken = authenticationToken;
-        this.username = username;
-    }
-
-    public String getAuthenticationToken() {
-        return authenticationToken;
-    }
-
-    public void setAuthenticationToken(String authenticationToken) {
-        this.authenticationToken = authenticationToken;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    String authenticationToken;
+    String username;
 }

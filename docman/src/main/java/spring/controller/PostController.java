@@ -1,21 +1,23 @@
 package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.dto.PostDto;
-import spring.model.Post;
 import spring.security.PostService;
 
 import java.util.List;
 
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
 
-    @Autowired
-    private PostService postService;
+    PostService postService;
 
     @PostMapping
     public ResponseEntity createPost(@RequestBody PostDto postDto) {

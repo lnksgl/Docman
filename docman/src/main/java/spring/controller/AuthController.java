@@ -1,5 +1,8 @@
 package spring.controller;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +15,13 @@ import spring.dto.RegisterRequest;
 import spring.service.AuthService;
 import spring.service.AuthenticationResponse;
 
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+    AuthService authService;
 
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody RegisterRequest registerRequest) {

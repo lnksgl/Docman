@@ -1,21 +1,18 @@
-<div class="content">
-  <div class="container">
-    <div class="row" *ngFor="let post of posts | async">
-      <div class="blogpost">
-        <h3><a href="/post/{{post.id}}" class="blog-title">{{post.title}}</a></h3>
-        <div>
-          <i class="fas fa-user"></i> Author: <p>{{post.username}}</p>
-        </div>
-        <p [innerHTML]="post.category"></p>
-        <p [innerHTML]="post.content"></p>
-        <div>
-          <a type="button" href="/post/{{post.id}}" class="read-more btn btn-default">Read More</a>
-          <a type="button" href="/delete/{{post.id}}" class="read-more btn btn-default">Delete</a>
-          <a type="button" href="/edit/{{post.id}}" class="read-more btn btn-default">Edit</a>
-        </div>
-        <hr>
-      </div>
-      <hr>
+<ul>
+  <li *ngFor="let post of posts | async | paginate: { itemsPerPage: 5, currentPage: page }">
+    <div class="d-flex">
+      <h5 class="mb-1">{{post.title}}</h5>
     </div>
-  </div>
-</div>
+    <div class="mb-1">
+      <i class="fas fa-user"></i> Author: {{post.username}}
+    </div>
+    <p [innerHTML]="post.category"></p>
+    <p [innerHTML]="post.content"></p>
+    <small><a type="button" href="/post/{{post.id}}" class="read-more btn btn-default">read more...</a></small>
+      <a type="button" href="/delete/{{post.id}}" class="fas fa-trash-alt"></a>
+      <a type="button" href="/edit/{{post.id}}" class="fas fa-edit"></a>
+    <hr>
+  </li>
+</ul>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>

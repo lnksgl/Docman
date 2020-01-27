@@ -17,7 +17,7 @@ import {EditorModule} from '@tinymce/tinymce-angular';
 import {HttpClientInterceptor} from './http-client-interceptor';
 import {PostComponent} from './post/post.component';
 import {AuthGuard} from './auth.guard';
-import {NgSelectModule} from "@ng-select/ng-select";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     ]),
     HttpClientModule,
     EditorModule,
-    NgSelectModule
+    NgxPaginationModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]

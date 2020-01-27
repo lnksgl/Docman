@@ -10,11 +10,13 @@ import {PostPayload} from '../add-post/post-payload';
 })
 export class HomeComponent implements OnInit {
 
+  page: number = 1;
+
   posts: Observable<Array<PostPayload>>;
-  constructor(private postService: AddPostService) { }
+  constructor(private postService: AddPostService) {
+  }
 
   ngOnInit() {
     this.posts = this.postService.getAllPosts();
   }
-
 }

@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {LoginPayload} from '../login-payload';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {isEmpty} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',

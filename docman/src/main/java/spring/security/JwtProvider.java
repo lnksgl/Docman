@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,11 @@ import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Service
 public class JwtProvider {
 
-    private KeyStore keyStore;
+    KeyStore keyStore;
 
     @PostConstruct
     public void init() {
@@ -30,7 +33,6 @@ public class JwtProvider {
         } catch (IOException | CertificateException | NoSuchAlgorithmException | KeyStoreException e) {
             throw new KeyException("Exception occured while loading keystore");
         }
-
     }
 
     public String generateToken() {
