@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgModel} from '@angular/forms';
 import {PostPayload} from './post-payload';
 import {AddPostService} from '../add-post.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {log} from 'util';
 
 @Component({
@@ -41,7 +41,7 @@ export class AddPostComponent implements OnInit {
     this.postPayload.title = this.addPostForm.get('title').value;
     this.postPayload.category = this.addPostForm.get('category').value;
     this.addPostService.addPost(this.postPayload).subscribe(data => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('');
     }, error => {
       console.log('Failure Response');
     });

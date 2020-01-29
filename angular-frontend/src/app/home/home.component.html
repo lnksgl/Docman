@@ -1,3 +1,8 @@
+<div class="container">
+  <form class="form-group m-5">
+    <label for="inputSearch" class="sr-only">Search</label>
+    <input type="text" id="inputSearch" class="form-control" #input (click)="search(input.value)" placeholder="Search" required="" autofocus="">
+  </form>
 <ul>
   <li *ngFor="let post of posts | async | paginate: { itemsPerPage: 5, currentPage: page }">
     <div class="d-flex">
@@ -8,11 +13,11 @@
     </div>
     <p [innerHTML]="post.category"></p>
     <p [innerHTML]="post.content"></p>
-    <small><a type="button" href="/post/{{post.id}}" class="read-more btn btn-default">read more...</a></small>
-      <a type="button" href="/delete/{{post.id}}" class="fas fa-trash-alt"></a>
-      <a type="button" href="/edit/{{post.id}}" class="fas fa-edit"></a>
+    <small><a type="button" href="v1/post/{{post.id}}" class="read-more btn btn-default">read more...</a></small>
+      <a type="button" (click)="deletePost(post.id)" href="" class="fas fa-trash-alt"></a>
+      <a type="button" href="v1/get/{{post.id}}" class="fas fa-edit"></a>
     <hr>
   </li>
 </ul>
-
 <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

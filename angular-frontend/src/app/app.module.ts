@@ -18,7 +18,7 @@ import {HttpClientInterceptor} from './http-client-interceptor';
 import {PostComponent} from './post/post.component';
 import {AuthGuard} from './auth.guard';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomeComponent,
     AddPostComponent,
     PostComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +40,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     Ng2Webstorage.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'post/:id', component: PostComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'home', component: HomeComponent},
-      {path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard]},
+      {path: 'v1/register', component: RegisterComponent},
+      {path: 'v1/post/:id', component: PostComponent},
+      {path: 'v1/login', component: LoginComponent},
+      {path: 'v1/get/:id', component: UpdatePostComponent},
+      {path: 'v1/post', component: AddPostComponent, canActivate: [AuthGuard]},
     ]),
     HttpClientModule,
     EditorModule,

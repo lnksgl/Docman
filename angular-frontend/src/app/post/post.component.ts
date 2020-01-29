@@ -12,6 +12,7 @@ export class PostComponent implements OnInit {
 
   post: PostPayload;
   permaLink: number;
+
   constructor(private router: ActivatedRoute, private postService: AddPostService) {
   }
 
@@ -25,7 +26,9 @@ export class PostComponent implements OnInit {
     }, (error: any) => {
       console.log('Failure Response');
     });
+  }
 
-    this.postService.deletePost(this.permaLink);
+  deletePost(id) {
+    this.postService.deletePost(id).subscribe();
   }
 }

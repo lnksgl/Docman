@@ -12,19 +12,19 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'http://localhost:7070/api/auth/';
+  private url = 'http://localhost:7070/api/v1/';
 
   constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService, private router: Router) {
   }
 
-    register(registerPayload: RegisterPayload): Observable<any> {
+  register(registerPayload: RegisterPayload): Observable<any> {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
 
   logout() {
     this.localStorageService.clear('authenticationToken');
     this.localStorageService.clear('username');
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('');
   }
 
   login(loginPayload: LoginPayload): Observable<boolean> {
