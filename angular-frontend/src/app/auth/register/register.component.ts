@@ -50,11 +50,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  assertValidate() {
-    if (this.registerForm.get('username').value != '' && this.registerForm.get('email').value != '' &&
-      this.registerForm.get('password').value != '' && this.registerForm.get('confirmPassword').value != '') {
-      return this.registerForm.get('username').value;
-    }
-    return '';
+  assertValidate(username: string, email: string, password: string, confirmPassword: string) {
+    return !(username != '' && email != '' && password != '' && confirmPassword != '');
   }
 }

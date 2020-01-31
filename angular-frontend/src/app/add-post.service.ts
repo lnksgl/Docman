@@ -31,7 +31,15 @@ export class AddPostService {
     return this.httpClient.put(this.url, postPayload);
   }
 
-  getTitle(search: string): Observable<Array<PostPayload>> {
-    return this.httpClient.put<Array<PostPayload>>(this.url + '/' + search, '');
+  getTitle(title: string): Observable<Array<PostPayload>> {
+    return this.httpClient.put<Array<PostPayload>>(this.url + '/title/' + title, '');
+  }
+
+  getCategory(category: string): Observable<Array<PostPayload>> {
+    return this.httpClient.put<Array<PostPayload>>(this.url + '/category/' + category, '');
+  }
+
+  getAllCategories() {
+    return ['ss', 'q'];
   }
 }

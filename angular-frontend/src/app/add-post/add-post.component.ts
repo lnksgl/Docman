@@ -36,10 +36,10 @@ export class AddPostComponent implements OnInit {
   ngOnInit() {
   }
 
-  addPost() {
-    this.postPayload.content = this.addPostForm.get('body').value;
-    this.postPayload.title = this.addPostForm.get('title').value;
-    this.postPayload.category = this.addPostForm.get('category').value;
+  addPost(title: string, category: string, body: string) {
+    this.postPayload.content = body;
+    this.postPayload.title = title;
+    this.postPayload.category = category;
     this.addPostService.addPost(this.postPayload).subscribe(data => {
       this.router.navigateByUrl('');
     }, error => {
@@ -47,11 +47,7 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-  assertValidate() {
-    if (this.addPostForm.get('title').value != '' && this.addPostForm.get('category').value != '' &&
-      this.addPostForm.get('body').value != '') {
-      return this.addPostForm.get('title').value;
-    }
-    return '';
+  assertValidate(title: string, category: string, body: string) {
+    return !(title != '' && category != '' && body != '');
   }
 }

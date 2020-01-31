@@ -41,10 +41,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  assertValidate() {
-    if (this.loginForm.get('username').value && this.loginForm.get('password').value) {
-      return this.loginForm.get('username').value;
-    }
-    return '';
+  assertValidate(username: string, password: string) {
+    return !(username != '' && password != '');
   }
 }

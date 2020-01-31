@@ -38,10 +38,10 @@ export class UpdatePostComponent implements OnInit {
     });
   }
 
-  updatePost() {
-    this.post.content = this.updatePostForm.get('body').value;
-    this.post.title = this.updatePostForm.get('title').value;
-    this.post.category = this.updatePostForm.get('category').value;
+  updatePost(title: string, category: string, body: string) {
+    this.post.content = body;
+    this.post.title = title;
+    this.post.category = category;
     this.postService.updatePost(this.post).subscribe(data => {
       this.router.navigateByUrl('/');
     }, error => {
@@ -49,12 +49,8 @@ export class UpdatePostComponent implements OnInit {
     });
   }
 
-  assertValidate() {
-    if (this.updatePostForm.get('title').value != '' && this.updatePostForm.get('category').value != '' &&
-      this.updatePostForm.get('body').value != '') {
-      return this.updatePostForm.get('title').value;
-    }
-    return '';
+  assertValidate(title: string, category: string, body: string) {
+    return !(title != '' && category != '' && body != '');
   }
 
   deletePost(id) {

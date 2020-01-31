@@ -1,27 +1,16 @@
-<div class="example-container">
-  <h2>To do</h2>
-
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Done</h2>
-
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-  </div>
+<div class="container">
+  <ul>
+    <li *ngFor="let user of users | async | paginate: { itemsPerPage: 5, currentPage: page }">
+      <div class="d-flex">
+        <h5 class="mb-1">{{user.title}}</h5>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-user"></i> Author: {{user.username}}
+      </div>
+      <p [innerHTML]="user.category"></p>
+      <p [innerHTML]="user.content"></p>
+      <hr>
+    </li>
+  </ul>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

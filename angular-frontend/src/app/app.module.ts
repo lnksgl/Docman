@@ -18,7 +18,10 @@ import {HttpClientInterceptor} from './http-client-interceptor';
 import {PostComponent} from './post/post.component';
 import {AuthGuard} from './auth.guard';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { UpdatePostComponent } from './update-post/update-post.component';
+import {UpdatePostComponent} from './update-post/update-post.component';
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import "@angular/material/prebuilt-themes/deeppurple-amber.css"
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { UpdatePostComponent } from './update-post/update-post.component';
     ]),
     HttpClientModule,
     EditorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]

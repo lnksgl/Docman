@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.dto.PostDto;
-import spring.security.PostService;
+import spring.service.PostService;
 
 import java.util.List;
 
@@ -47,12 +47,12 @@ public class PostController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("{title}")
+    @PutMapping("/title/{title}")
     public ResponseEntity<List<PostDto>> getTitlePosts(@PathVariable String title) {
         return new ResponseEntity<>(postService.showTitlePost(title), HttpStatus.OK);
     }
 
-    @GetMapping("/category/{category}")
+    @PutMapping("/category/{category}")
     public ResponseEntity<List<PostDto>> getCategoryPosts(@PathVariable String category) {
         return new ResponseEntity<>(postService.showCategoryPosts(category), HttpStatus.OK);
     }

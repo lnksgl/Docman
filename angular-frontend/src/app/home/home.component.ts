@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AddPostService} from '../add-post.service';
 import {Observable} from 'rxjs';
 import {PostPayload} from '../add-post/post-payload';
-import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -15,6 +20,7 @@ export class HomeComponent implements OnInit {
   post: PostPayload;
 
   posts: Observable<Array<PostPayload>>;
+
   constructor(private postService: AddPostService) {
   }
 
@@ -26,11 +32,20 @@ export class HomeComponent implements OnInit {
     this.postService.deletePost(id).subscribe();
   }
 
-  search(value: string) {
-    if(value === '') {
+  searchTitle(value: string) {
+    if (value === '') {
       this.ngOnInit();
+
     } else {
       this.posts = this.postService.getTitle(value);
+    }
+  }
+
+  searchCategory(value: string) {
+    if (value === undefined) {
+      this.ngOnInit();
+    } else {
+      this.posts = this.postService.getCategory(value);
     }
   }
 }
