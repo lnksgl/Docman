@@ -3,7 +3,8 @@ package spring.service;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,17 +25,23 @@ import java.util.Optional;
 public class AuthService {
 
     UserRepository userRepository;
+    UserService userService;
     PasswordEncoder passwordEncoder;
     AuthenticationManager authenticationManager;
     JwtProvider jwtProvider;
 
-    public void signup(RegisterRequest registerRequest) {
-        User user = new User();
-        user.setUsername(registerRequest.getUsername());
-        user.setPassword(encodePassword(registerRequest.getPassword()));
-        user.setEmail(registerRequest.getEmail());
+    public ResponseEntity signup(RegisterRequest registerRequest) {
+        if (userService.checkUsername(registerRequest.getUsername(), registerRequest.getEmail())) {
+            User user = new User();
+            user.setUsername(registerRequest.getUsername());
+            user.setPassword(encodePassword(registerRequest.getPassword()));
+            user.setEmail(registerRequest.getEmail());
+            userService.createUser(user);
 
-        userRepository.save(user);
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
     private String encodePassword(String password) {

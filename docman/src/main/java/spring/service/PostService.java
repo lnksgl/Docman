@@ -11,6 +11,7 @@ import spring.exception.PostNotFoundException;
 import spring.mapper.PostMapper;
 import spring.model.Post;
 import spring.repository.PostRepository;
+import spring.security.JwtProvider;
 
 import java.time.Instant;
 import java.util.List;
@@ -69,12 +70,10 @@ public class PostService {
         return posts.stream().map(this::mapFromPostToDto).collect(toList());
     }
 
-    @Transactional
     public PostDto mapFromPostToDto(Post post) {
         return postMapper.postToPostDto(post);
     }
 
-    @Transactional
     public Post mapFromDtoToPost(PostDto postDto) {
         Post post = postMapper.dtoToPost(postDto);
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));

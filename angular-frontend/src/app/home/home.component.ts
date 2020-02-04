@@ -3,6 +3,7 @@ import {AddPostService} from '../add-post.service';
 import {Observable} from 'rxjs';
 import {PostPayload} from '../add-post/post-payload';
 import {Router} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
 
 export interface Food {
   value: string;

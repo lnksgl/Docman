@@ -3,7 +3,6 @@ package spring.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import spring.dto.PostDto;
 import spring.model.Post;
 
 import java.time.Instant;

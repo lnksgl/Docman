@@ -4,6 +4,13 @@
       <div class="col-md-6">
         <h1><a href="" class="title">DocMan</a></h1>
       </div>
+      <div *ngIf="authService.isAdmin()">
+        <a href="v1/post" class="login btn btn-default">Users</a>
+        <a href="v1/post" class="login btn btn-default">Posts</a>
+      </div>
+      <div *ngIf="!authService.isAdmin()">
+        <a href="v1/post" class="login btn btn-default">Posts</a>
+      </div>
       <div class="col-md-3" *ngIf="authService.isAuthenticated()">
         <button class="logout btn btn-default" (click)="logout()">Logout</button>
         <a href="v1/post" class="new-post">Add Document</a>
