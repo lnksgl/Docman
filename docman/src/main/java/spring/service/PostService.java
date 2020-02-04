@@ -62,6 +62,11 @@ public class PostService {
         return postsStream(postRepository.findByTitle(title));
     }
 
+
+    public List<PostDto> showTitleUsernamePosts(String title, String username) {
+        return postsStream(postRepository.findByTitleAndUsername(title, username));
+    }
+
     public List<PostDto> showUsernamePosts(String username) {
         return postsStream(postRepository.findByUsername(username));
     }

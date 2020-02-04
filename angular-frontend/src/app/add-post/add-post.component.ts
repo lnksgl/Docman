@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgModel} from '@angular/forms';
 import {PostPayload} from './post-payload';
 import {AddPostService} from '../add-post.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {log} from 'util';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-post',

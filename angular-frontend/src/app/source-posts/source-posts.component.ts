@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {AddPostService} from '../add-post.service';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import {PostPayload} from '../add-post/post-payload';
+import {Observable} from 'rxjs';
+import {AddPostService} from '../add-post.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-source-posts',
+  templateUrl: './source-posts.component.html',
+  styleUrls: ['./source-posts.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SourcePostsComponent implements OnInit {
 
   page: number = 1;
   post: PostPayload;
@@ -19,7 +19,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.posts = this.postService.getUsername();
+    this.posts = this.postService.getAllPosts();
+  }
+
+  deletePost(id) {
+    this.postService.deletePost(id).subscribe();
   }
 
   searchTitle(value: string) {
@@ -27,7 +31,7 @@ export class HomeComponent implements OnInit {
       this.ngOnInit();
 
     } else {
-      this.posts = this.postService.getTitleUsername(value);
+      this.posts = this.postService.getTitle(value);
     }
   }
 

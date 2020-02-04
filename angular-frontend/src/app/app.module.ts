@@ -21,7 +21,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {UpdatePostComponent} from './update-post/update-post.component';
 import {MatSelectModule} from '@angular/material/select';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import "@angular/material/prebuilt-themes/deeppurple-amber.css"
+import { SourcePostsComponent } from './source-posts/source-posts.component';
+import {SourceUsersComponent} from './source-users/source-users.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import "@angular/material/prebuilt-themes/deeppurple-amber.css"
     AddPostComponent,
     PostComponent,
     UpdatePostComponent,
+    SourcePostsComponent,
+    SourceUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,8 @@ import "@angular/material/prebuilt-themes/deeppurple-amber.css"
       {path: 'v1/login', component: LoginComponent},
       {path: 'v1/get/:id', component: UpdatePostComponent},
       {path: 'v1/post', component: AddPostComponent, canActivate: [AuthGuard]},
+      {path: 'v1/posts', component: SourcePostsComponent},
+      {path: 'v1/users', component: SourceUsersComponent},
     ]),
     HttpClientModule,
     EditorModule,

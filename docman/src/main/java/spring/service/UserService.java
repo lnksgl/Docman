@@ -36,7 +36,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deletePost(long id) {
+    public void deleteUser(long id) {
        userRepository.delete(userRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
     }
 
@@ -46,11 +46,7 @@ public class UserService {
     }
 
     public boolean checkUsername(String username, String email) {
-        if (showUsername(username).isEmpty() && showEmail(email).isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return showUsername(username).isEmpty() && showEmail(email).isEmpty();
     }
 
     public List<UserDto> showUsername(String username) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PostPayload} from './add-post/post-payload';
 import {Observable, of} from 'rxjs';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Observable, of} from 'rxjs';
 export class AddPostService {
   private url = 'http://localhost:7070/api/v1/posts';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) { }
 
   addPost(postPayload: PostPayload): Observable<any> {
     return this.httpClient.post(this.url, postPayload);
@@ -39,7 +40,11 @@ export class AddPostService {
     return this.httpClient.put<Array<PostPayload>>(this.url + '/category/' + category, '');
   }
 
-  getAllCategories() {
-    return ['ss', 'q'];
+  getUsername(): Observable<Array<PostPayload>> {
+    return this.httpClient.put<Array<PostPayload>>(this.url + '/username/' + this.localStorageService.retrieve('username'), '');
   }
+
+  getTitleUsername(title: string): Observable<Array<PostPayload>> {
+  return this.httpClient.put<Array<PostPayload>>(this.url + '/' + title + '?' + this.localStorageService.retrieve('username'), '');
+}
 }
