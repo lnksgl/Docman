@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.docmangradle'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.2.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.4.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.4.RELEASE'
+
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.9'
+
+    compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.10.7'
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.10.7'
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.10.7'
+
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+    compile group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
+
+    compile group: 'org.mapstruct', name: 'mapstruct', version: '1.3.1.Final'
+    compile group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.3.1.Final'
+
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
