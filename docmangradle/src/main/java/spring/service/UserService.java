@@ -4,7 +4,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dto.UserDto;
@@ -38,7 +42,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deletePost(long id) {
+    public void deleteUser(long id) {
        userRepository.delete(userRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
     }
 
@@ -48,11 +52,7 @@ public class UserService {
     }
 
     public boolean checkUsername(String username, String email) {
-        if (showUsername(username).isEmpty() && showEmail(email).isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return showUsername(username).isEmpty() && showEmail(email).isEmpty();
     }
 
     public List<UserDto> showUsername(String username) {

@@ -1,4 +1,4 @@
-package spring.service;
+package spring.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

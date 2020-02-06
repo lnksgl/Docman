@@ -2,10 +2,10 @@ package spring.service;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +62,11 @@ public class PostService {
 
     public List<PostDto> showTitlePost(String title) {
         return postsStream(postRepository.findByTitle(title));
+    }
+
+
+    public List<PostDto> showTitleUsernamePosts(String title, String username) {
+        return postsStream(postRepository.findByTitleAndUsername(title, username));
     }
 
     public List<PostDto> showUsernamePosts(String username) {

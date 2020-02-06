@@ -11,10 +11,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import spring.dto.LoginRequest;
-import spring.dto.RegisterRequest;
+import spring.request.LoginRequest;
+import spring.request.RegisterRequest;
 import spring.model.User;
 import spring.repository.UserRepository;
+import spring.response.AuthenticationResponse;
 import spring.security.JwtProvider;
 
 import java.util.Optional;
@@ -24,7 +25,6 @@ import java.util.Optional;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthService {
 
-    UserRepository userRepository;
     UserService userService;
     PasswordEncoder passwordEncoder;
     AuthenticationManager authenticationManager;

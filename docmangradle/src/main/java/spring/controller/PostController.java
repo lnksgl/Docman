@@ -31,7 +31,7 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<PostDto>> showAllPosts() {
         return new ResponseEntity<>(postService.showAllPosts(), HttpStatus.OK);
     }
@@ -57,8 +57,13 @@ public class PostController {
         return new ResponseEntity<>(postService.showCategoryPosts(category), HttpStatus.OK);
     }
 
-    @GetMapping("/username/{username}")
+    @PutMapping("/username/{username}")
     public ResponseEntity<List<PostDto>> getUsernamePosts(@PathVariable String username) {
         return new ResponseEntity<>(postService.showUsernamePosts(username), HttpStatus.OK);
+    }
+
+    @PutMapping("{title}?{username}")
+    public ResponseEntity<List<PostDto>> getTitleUsernamePosts(@PathVariable String title, @PathVariable String username) {
+        return new ResponseEntity<>(postService.showTitleUsernamePosts(title, username), HttpStatus.OK);
     }
 }

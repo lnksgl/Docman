@@ -3,13 +3,12 @@ package spring.controller;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spring.dto.LoginRequest;
-import spring.dto.RegisterRequest;
+import spring.request.LoginRequest;
+import spring.request.RegisterRequest;
 import spring.service.AuthService;
-import spring.service.AuthenticationResponse;
+import spring.response.AuthenticationResponse;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)

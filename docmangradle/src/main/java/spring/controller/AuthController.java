@@ -4,11 +4,14 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import spring.dto.LoginRequest;
-import spring.dto.RegisterRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import spring.request.LoginRequest;
+import spring.request.RegisterRequest;
+import spring.response.AuthenticationResponse;
 import spring.service.AuthService;
-import spring.service.AuthenticationResponse;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)

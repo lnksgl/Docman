@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table (name="users")
+@Table(name="users")
 @Setter
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)

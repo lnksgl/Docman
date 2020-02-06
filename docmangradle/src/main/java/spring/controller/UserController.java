@@ -27,7 +27,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id) {
-        userService.deletePost(id);
+        userService.deleteUser(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -36,7 +36,7 @@ public class UserController {
         return new ResponseEntity(userService.readSingleUser(id), HttpStatus.OK);
     }
 
-    @GetMapping("/name/{username}")
+    @GetMapping("/username/{username}")
     public ResponseEntity<List<PostDto>> getUsername(@PathVariable String username) {
         return new ResponseEntity(userService.showUsername(username), HttpStatus.OK);
     }

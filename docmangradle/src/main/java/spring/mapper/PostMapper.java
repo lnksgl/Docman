@@ -1,7 +1,7 @@
 package spring.mapper;
 
 import org.mapstruct.Mapper;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 import spring.dto.PostDto;
 import spring.model.Post;
 
