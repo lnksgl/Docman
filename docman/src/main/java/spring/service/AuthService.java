@@ -30,7 +30,7 @@ public class AuthService {
     AuthenticationManager authenticationManager;
     JwtProvider jwtProvider;
 
-    public ResponseEntity signup(RegisterRequest registerRequest) {
+    public ResponseEntity signUp(RegisterRequest registerRequest) {
         if (userService.checkUsername(registerRequest.getUsername(), registerRequest.getEmail())) {
             User user = new User();
             user.setUsername(registerRequest.getUsername());

@@ -8,7 +8,7 @@ import {LocalStorageService} from 'ngx-webstorage';
   providedIn: 'root'
 })
 export class AddPostService {
-  private url = 'http://localhost:7070/api/v1/posts';
+  private url = 'https://localhost:7070/api/v1/posts';
 
   constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) { }
 

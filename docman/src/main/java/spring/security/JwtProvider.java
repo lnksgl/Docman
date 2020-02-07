@@ -25,7 +25,7 @@ public class JwtProvider {
     public void init() {
         try {
             keyStore = KeyStore.getInstance("JKS");
-            InputStream resourceAsStream = getClass().getResourceAsStream("/docman.jks");
+            InputStream resourceAsStream = getClass().getResourceAsStream("/keystore/docman.jks");
             keyStore.load(resourceAsStream, "usblaster".toCharArray());
         } catch (IOException | CertificateException | NoSuchAlgorithmException | KeyStoreException e) {
             throw new KeyException("Exception occured while loading keystore");
