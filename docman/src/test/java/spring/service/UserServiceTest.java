@@ -33,7 +33,6 @@ class UserServiceTest {
     private static final String EMAIL = "TEST";
     private static final String PASSWORD = "TEST";
     private static User user = new User();
-    private static UserDto userDto;
 
     @Autowired
     UserMapper userMapper;
@@ -52,7 +51,6 @@ class UserServiceTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        userDto = userMapper.userToUserDto(user);
     }
 
     @Ignore

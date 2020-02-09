@@ -5,21 +5,29 @@ import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import spring.request.LoginRequest;
 import spring.request.RegisterRequest;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
+@RunWith(JUnitPlatform.class)
 class AuthServiceTest {
 
     private static final String USERNAME = "TEST";
     private static final String EMAIL = "TEST";
     private static final String PASSWORD = "TEST";
     private static RegisterRequest registerRequest = new RegisterRequest();
+    private static LoginRequest loginRequest = new LoginRequest();
 
     @Mock
     AuthService authService;
@@ -29,6 +37,8 @@ class AuthServiceTest {
         registerRequest.setUsername(USERNAME);
         registerRequest.setEmail(EMAIL);
         registerRequest.setPassword(PASSWORD);
+        loginRequest.setUsername(USERNAME);
+        loginRequest.setPassword(PASSWORD);
     }
 
     @Before
@@ -39,5 +49,10 @@ class AuthServiceTest {
     @Ignore
     void signUp() {
         Assertions.assertEquals(authService.signUp(registerRequest).getStatusCode(), HttpStatus.OK);
+    }
+
+    @Ignore
+    void login() {
+        System.out.println(authService.login(loginRequest).getUsername());
     }
 }

@@ -30,8 +30,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
+@RunWith(JUnitPlatform.class)
 class PostServiceTest {
 
     private static final long ID = 0;
