@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -36,7 +37,7 @@ class UserServiceTest {
 
     @Autowired
     UserMapper userMapper;
-    @Mock
+    @InjectMocks
     UserService userService;
     @Mock
     UserRepository userRepository;
@@ -53,17 +54,18 @@ class UserServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Ignore
+    @Test
     void createPost() {
+
         userService.createUser(user);
     }
 
-    @Ignore
+    @Test
     void showAllUsers() {
         userService.showAllUsers();
     }
 
-    @Ignore
+    @Test
     void deleteUser() {
         userService.deleteUser(ID);
     }

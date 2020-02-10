@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -44,7 +45,7 @@ class PostServiceTest {
 
     @Autowired
     PostMapper postMapper;
-    @Mock
+    @InjectMocks
     PostService postService;
     @Mock
     PostRepository postRepository;
@@ -63,17 +64,17 @@ class PostServiceTest {
         postDto = postMapper.postToPostDto(post);
     }
 
-    @Ignore
+    @Test
     void showAllPosts() {
         System.out.println(postService.showAllPosts());
     }
 
-    @Ignore
+    @Test
     void createPost() {
         postService.createPost(postDto);
     }
 
-    @Ignore
+    @Test
     void updatePost() {
         postService.updatePost(postDto);
     }
@@ -84,7 +85,7 @@ class PostServiceTest {
         System.out.println(postService.readSinglePost(ID));
     }
 
-    @Ignore
+    @Test
     void deletePost() {
         postService.deletePost(ID);
     }

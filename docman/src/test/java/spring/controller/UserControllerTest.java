@@ -45,12 +45,12 @@ class UserControllerTest {
         perform(get(url + "/username/" + USERNAME));
     }
 
-    @Ignore
+    @Ignore //write ID
     void getSingleUser() throws Exception {
         perform(get(url + "/" + ID));
     }
 
-    @Ignore
+    @Ignore //write ID
     void deleteUser() throws Exception {
         perform(delete(url + "/" + ID));
     }

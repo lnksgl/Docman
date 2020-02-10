@@ -4,12 +4,15 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import spring.request.LoginRequest;
 import spring.request.RegisterRequest;
@@ -24,7 +27,7 @@ class AuthServiceTest {
     private static RegisterRequest registerRequest = new RegisterRequest();
     private static LoginRequest loginRequest = new LoginRequest();
 
-    @Mock
+    @InjectMocks
     AuthService authService;
 
     @BeforeAll

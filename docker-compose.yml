@@ -42,10 +42,6 @@ services:
     ports:
       - 9090:9090
     restart: always
-  #    deploy:
-  #      placement:
-  #        constraints:
-  #          - node.hostname == ${HOSTNAME}
 
   adminer:
     image: adminer

@@ -58,7 +58,7 @@ class PostControllerTest {
                 .content(json));
     }
 
-    @Ignore
+    @Test
     void updatePost() throws Exception {
         perform(put(url)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -70,17 +70,17 @@ class PostControllerTest {
         perform(get(url));
     }
 
-    @Ignore
+    @Ignore //write ID
     void getSinglePost() throws Exception {
         perform(get(url + "/" + ID));
     }
 
-    @Ignore
+    @Ignore //write ID
     void deletePost() throws Exception {
         perform(delete(url + "/" + ID));
     }
 
-    @Test
+    @Ignore
     void getTitlePosts() throws Exception {
         perform(put(url + "/title/" + TITLE));
     }
