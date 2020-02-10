@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  todo-nginx:
+    build: angular-frontend/.
+  todo-rest:
+    build: docman/.
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
