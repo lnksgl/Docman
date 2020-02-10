@@ -54,8 +54,8 @@ class PostControllerTest {
     @Ignore
     void createPost() throws Exception {
         perform(post(url)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json));
     }
 
     @Ignore

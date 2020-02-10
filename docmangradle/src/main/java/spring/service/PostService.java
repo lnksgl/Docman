@@ -2,11 +2,7 @@ package spring.service;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dto.PostDto;
@@ -30,8 +26,8 @@ public class PostService {
     PostRepository postRepository;
     PostMapper postMapper;
 
-    public List<PostDto> showAllPosts() {
-        List<Post> posts = postRepository.findAll();
+    public java.util.List<PostDto> showAllPosts() {
+        java.util.List<Post> posts = postRepository.findAll();
         return posts.stream().map(this::mapFromPostToDto).collect(toList());
     }
 
@@ -56,7 +52,7 @@ public class PostService {
         postRepository.delete(postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
     }
 
-    public List<PostDto> showCategoryPosts(String category) {
+    public java.util.List<PostDto> showCategoryPosts(String category) {
         return postsStream(postRepository.findByCategory(category));
     }
 
@@ -83,7 +79,7 @@ public class PostService {
 
     public Post mapFromDtoToPost(PostDto postDto) {
         Post post = postMapper.dtoToPost(postDto);
-        User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
+        org.springframework.security.core.userdetails.User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
         post.setCreatedOn(Instant.now());
         post.setUsername(loggedInUser.getUsername());
         post.setUpdatedOn(Instant.now());

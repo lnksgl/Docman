@@ -2,13 +2,8 @@ package spring.service;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dto.UserDto;
@@ -17,10 +12,10 @@ import spring.mapper.UserMapper;
 import spring.model.User;
 import spring.repository.UserRepository;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -36,8 +31,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserDto> showAllUsers() {
-        List<User> users = userRepository.findAll();
+    public java.util.List<UserDto> showAllUsers() {
+        java.util.List<User> users = userRepository.findAll();
         return users.stream().map(this::mapFromUserToDto).collect(toList());
     }
 
@@ -55,7 +50,7 @@ public class UserService {
         return showUsername(username).isEmpty() && showEmail(email).isEmpty();
     }
 
-    public List<UserDto> showUsername(String username) {
+    public java.util.List<UserDto> showUsername(String username) {
         return usersStream(userRepository.findByUsername(username).stream().collect(Collectors.toList()));
     }
 

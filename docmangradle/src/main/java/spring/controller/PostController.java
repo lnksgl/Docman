@@ -26,7 +26,7 @@ public class PostController {
     }
 
     @PutMapping
-    public ResponseEntity<List<PostDto>> updatePost(@RequestBody PostDto postDto) {
+    public ResponseEntity<java.util.List<PostDto>> updatePost(@RequestBody PostDto postDto) {
         postService.updatePost(postDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }

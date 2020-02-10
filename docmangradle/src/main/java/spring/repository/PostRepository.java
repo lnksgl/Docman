@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findByCategory(String category);
-    List<Post> findByTitle(String title);
-    List<Post> findByUsername(String username);
+    java.util.List<Post> findByCategory(String category);
+    java.util.List<Post> findByTitle(String title);
+    java.util.List<Post> findByUsername(String username);
     List<Post> findByTitleAndUsername(String title, String username);
 
     @Modifying

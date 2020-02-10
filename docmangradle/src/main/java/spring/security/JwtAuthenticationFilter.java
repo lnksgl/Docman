@@ -5,9 +5,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,7 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     JwtProvider jwtProvider;
     @Autowired
     @Qualifier("UserDetailsService")
-    UserDetailsService userDetailsService;
+    org.springframework.security.core.userdetails.UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
@@ -34,12 +31,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
             String username = jwtProvider.getUsernameFromJWT(jwt);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            org.springframework.security.core.userdetails.UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            org.springframework.security.core.context.SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);

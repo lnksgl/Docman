@@ -5,13 +5,11 @@ import io.jsonwebtoken.Jwts;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import spring.exception.KeyException;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
 
@@ -25,7 +23,7 @@ public class JwtProvider {
     public void init() {
         try {
             keyStore = KeyStore.getInstance("JKS");
-            InputStream resourceAsStream = getClass().getResourceAsStream("/docman.jks");
+            java.io.InputStream resourceAsStream = getClass().getResourceAsStream("/keystore/docman.jks");
             keyStore.load(resourceAsStream, "usblaster".toCharArray());
         } catch (IOException | CertificateException | NoSuchAlgorithmException | KeyStoreException e) {
             throw new KeyException("Exception occured while loading keystore");
@@ -33,7 +31,7 @@ public class JwtProvider {
     }
 
     public String generateToken() {
-        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        Authentication loggedInUser = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
         return Jwts.builder()
                 .setSubject(loggedInUser.getName())
                 .signWith(getPrivateKey())

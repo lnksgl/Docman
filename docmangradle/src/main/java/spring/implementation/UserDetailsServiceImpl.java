@@ -5,20 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 import spring.model.User;
 import spring.repository.UserRepository;
 
-import java.util.Collection;
 import java.util.Collections;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Service("UserDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
 
     UserRepository userRepository;
 
@@ -32,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 getAuthorities("ROLE_USER"));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
+    private java.util.Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
         return Collections.singletonList(new SimpleGrantedAuthority(role_user));
     }
 }
