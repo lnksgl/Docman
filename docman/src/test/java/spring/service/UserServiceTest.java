@@ -13,13 +13,18 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import spring.dto.PostDto;
 import spring.dto.UserDto;
 import spring.mapper.UserMapper;
+import spring.model.Post;
 import spring.model.User;
 import spring.repository.PostRepository;
 import spring.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Matchers.any;
@@ -34,8 +39,10 @@ class UserServiceTest {
     private static final String EMAIL = "TEST";
     private static final String PASSWORD = "TEST";
     private static User user = new User();
+    private static UserDto userDto = new UserDto();
+    private static final List<User> users = new ArrayList<User>();
 
-    @Autowired
+    @Mock
     UserMapper userMapper;
     @InjectMocks
     UserService userService;
@@ -44,9 +51,14 @@ class UserServiceTest {
 
     @BeforeAll
     public static void init() {
+        user.setId(ID);
         user.setUsername(USERNAME);
         user.setEmail(EMAIL);
         user.setPassword(PASSWORD);
+
+        userDto.setId(ID);
+        userDto.setUsername(USERNAME);
+        userDto.setEmail(EMAIL);
     }
 
     @Before
@@ -54,42 +66,45 @@ class UserServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
+    @Ignore //void
     void createPost() {
-
         userService.createUser(user);
     }
 
     @Test
     void showAllUsers() {
-        userService.showAllUsers();
+        when(userRepository.findAll()).thenReturn(users);
+        Assertions.assertEquals(userService.showAllUsers(), users);
     }
 
-    @Ignore
+    @Ignore //void
     void deleteUser() {
         userService.deleteUser(ID);
     }
 
-    @Ignore
+    @Test
     void readSingleUser() {
         when(userRepository.findById(ID)).thenReturn(java.util.Optional.of(user));
-        System.out.println(userService.readSingleUser(ID));
+        when(userService.mapFromUserToDto(user)).thenReturn(userDto);
+        Assertions.assertEquals(userService.readSingleUser(ID), userDto);
     }
 
     @Ignore
     void checkUsername() {
+        when(userRepository.findByUsername(USERNAME)).thenReturn(java.util.Optional.of(user));
+        when(userRepository.findByEmail(EMAIL)).thenReturn(users);
         Assertions.assertFalse(userService.checkUsername(USERNAME, PASSWORD));
     }
 
     @Ignore
     void showUsername() {
-        when(userRepository.findByUsername(USERNAME)).thenReturn(java.util.Optional.ofNullable(user));
-        System.out.println(userService.showUsername(USERNAME));
+        when(userRepository.findByUsername(USERNAME)).thenReturn(java.util.Optional.of(user));
+        Assertions.assertEquals(userService.showUsername(USERNAME), new ArrayList<UserDto>());
     }
 
-    @Ignore
+    @Test
     void showEmail() {
-        when(userRepository.findByEmail(EMAIL)).thenReturn(Collections.singletonList(user));
-        System.out.println(userService.showEmail(EMAIL));
+        when(userRepository.findByEmail(EMAIL)).thenReturn(users);
+        Assertions.assertEquals(userService.showEmail(EMAIL), users);
     }
 }

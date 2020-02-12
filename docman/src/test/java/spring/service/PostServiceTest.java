@@ -1,9 +1,6 @@
 package spring.service;
 
-import org.assertj.core.util.Arrays;
-import org.assertj.core.util.CanIgnoreReturnValue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,22 +11,22 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import spring.dto.PostDto;
 import spring.mapper.PostMapper;
 import spring.model.Post;
 import spring.repository.PostRepository;
 
-import javax.inject.Inject;
+import javax.annotation.meta.When;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
@@ -41,9 +38,10 @@ class PostServiceTest {
     private static final String CATEGORY = "TEST";
     private static final String USERNAME = "TEST";
     private static Post post = new Post();
-    private static PostDto postDto;
+    private static PostDto postDto = new PostDto();
+    private static final List<Post> posts = new ArrayList<Post>();
 
-    @Autowired
+    @Mock
     PostMapper postMapper;
     @InjectMocks
     PostService postService;
@@ -52,10 +50,17 @@ class PostServiceTest {
 
     @BeforeAll
     public static void init() {
+        post.setId(ID);
         post.setContent(CONTENT);
         post.setTitle(TITLE);
         post.setCategory(CATEGORY);
         post.setUsername(USERNAME);
+
+        postDto.setId(ID);
+        postDto.setContent(CONTENT);
+        postDto.setTitle(TITLE);
+        postDto.setCategory(CATEGORY);
+        postDto.setUsername(USERNAME);
     }
 
     @Before
@@ -66,51 +71,65 @@ class PostServiceTest {
 
     @Test
     void showAllPosts() {
-        System.out.println(postService.showAllPosts());
+        when(postRepository.findAll()).thenReturn(posts);
+        Assertions.assertEquals(postService.showAllPosts(), posts);
     }
 
-    @Ignore
+    @Ignore //void
     void createPost() {
         postService.createPost(postDto);
     }
 
-    @Ignore
+    @Ignore //void
     void updatePost() {
         postService.updatePost(postDto);
     }
 
-    @Ignore
+    @Test
     void readSinglePost() {
         when(postRepository.findById(ID)).thenReturn(java.util.Optional.of(post));
-        System.out.println(postService.readSinglePost(ID));
+        when(postService.mapFromPostToDto(post)).thenReturn(postDto);
+        Assertions.assertEquals(postService.readSinglePost(ID), postDto);
     }
 
-    @Ignore
+    @Ignore //void
     void deletePost() {
         postService.deletePost(ID);
     }
 
-    @Ignore
+    @Test
     void showCategoryPosts() {
-        when(postRepository.findByCategory(CATEGORY)).thenReturn(Collections.singletonList(post));
-        System.out.println(postService.showCategoryPosts(CATEGORY));
+        when(postRepository.findByCategory(CATEGORY)).thenReturn(posts);
+        Assertions.assertEquals(postService.showCategoryPosts(CATEGORY), posts);
     }
 
-    @Ignore
+    @Test
     void showTitlePost() {
-        when(postRepository.findByTitle(TITLE)).thenReturn(Collections.singletonList(post));
-        System.out.println(postService.showTitlePost(TITLE));
+        when(postRepository.findByTitle(TITLE)).thenReturn(posts);
+        Assertions.assertEquals(postService.showTitlePost(TITLE), posts);
     }
 
-    @Ignore
+    @Test
     void showTitleUsernamePosts() {
-        when(postRepository.findByTitleAndUsername(TITLE, USERNAME)).thenReturn(Collections.singletonList(post));
-        System.out.println(postService.showTitleUsernamePosts(TITLE, USERNAME));
+        when(postRepository.findByTitleAndUsername(TITLE, USERNAME)).thenReturn(posts);
+        Assertions.assertEquals(postService.showTitleUsernamePosts(TITLE, USERNAME), posts);
     }
 
-    @Ignore
+    @Test
     void showUsernamePosts() {
-        when(postRepository.findByUsername(USERNAME)).thenReturn(Collections.singletonList(post));
-        System.out.println(postService.showUsernamePosts(USERNAME));
+        when(postRepository.findByUsername(USERNAME)).thenReturn(posts);
+        Assertions.assertEquals(postService.showUsernamePosts(USERNAME), posts);
+    }
+
+    @Test
+    void mapFromPostToDto() {
+        when(postMapper.postToPostDto(post)).thenReturn(postDto);
+        Assertions.assertEquals(postService.mapFromPostToDto(post), postDto);
+    }
+
+    @Ignore //auth
+    void mapFromDtoToPost() {
+        when(postMapper.dtoToPost(postDto)).thenReturn(post);
+        System.out.println(postService.mapFromDtoToPost(postDto));
     }
 }
