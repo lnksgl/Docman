@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    monitor: 'devopsage-monitor'
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['172.31.26.111:9090']
+  - job_name: 'docman'
+    static_configs:
+      - targets: ['172.31.26.111:7070']

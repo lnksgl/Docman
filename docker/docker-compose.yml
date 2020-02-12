@@ -1,0 +1,63 @@
+version: '3.5'
+
+x-volumes:
+  - &app-src ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5431:5431
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8088:8088
+
+  angular:
+    build:
+      context: services/angular-frontend/
+      dockerfile: dockerfile
+    container_name: docker_angular-web
+    working_dir: ${APP_PATH_CONTAINER}
+    volumes:
+      - *app-src
+
+  docman:
+    build:
+      context: services/docman/
+      dockerfile: dockerfile
+    container_name: docker_docman-rest
+    working_dir: ${APP_PATH_CONTAINER}
+    volumes:
+      - *app-src
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana:5.1.0
+    ports:
+      - 3000:3000
+    user: "104"
+
+networks:
+  docman-docker_net:
+    name: docman-docker_network
+
+volumes:
+  prometheus_data: {}
+  db_data:

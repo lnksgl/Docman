@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-8">
+        <h1 class="blog-title">{{post.title}}</h1>
+        <span>
+          <p>by {{post.username}}</p>
+        </span>
+        <hr>
+        <p [innerHTML]="post.category"></p>
+        <p [innerHTML]="post.content"></p>
+        <hr>
+        <a type="button" (click)="deletePost(post.id)" href="" class="fas fa-trash-alt"></a>
+        <a type="button" href="/get/{{post.id}}" class="fas fa-edit"></a>
+      </div>
+    </div>
+  </div>
+</div>

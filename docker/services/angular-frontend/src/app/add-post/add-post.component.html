@@ -1,0 +1,25 @@
+<div class="add-post-content">
+  <div class="container">
+    <div>
+      <h3 class="new-post-title">Create New Post</h3>
+    </div>
+    <hr>
+    <form [formGroup]="addPostForm" (ngSubmit)="addPost(title.value, category.value, addPostForm.get('body').value)">
+      <div class="form-group">
+        <label class="post-title">Title</label>
+        <input type="text" name="title" #title [formControlName]="'title'" class="form-control" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label class="post-title">Category</label>
+        <input type="text" name="category" #category [formControlName]="'category'" class="form-control" placeholder="Category">
+      </div>
+      <div class="form-group">
+        <label class="post-content">Body</label>
+        <editor [formControlName]="'body'" [init]="{plugins: 'link'}"></editor>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="assertValidate(title.value, category.value, addPostForm.get('body').value)">Post</button>
+      </div>
+    </form >
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><a href="" class="title">DocMan</a></h1>
+      </div>
+
+      <div class="col-md-6" *ngIf="authService.isAuthenticated()">
+        <button class="logout btn btn-default" (click)="logout()">Logout</button>
+        <a href="v1/post" class="new-post">Add Document</a>
+        <div *ngIf="authService.isAdmin()">
+          <a href="v1/users" class="login btn btn-default">Users</a>
+          <a href="v1/posts" class="login btn btn-default">Posts</a>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="!authService.isAuthenticated()">
+        <a href="v1/login" class="login btn btn-default">Login</a>
+        <a href="v1/register" class="register btn btn-default">Register</a>
+      </div>
+    </div>
+  </div>
+</div>

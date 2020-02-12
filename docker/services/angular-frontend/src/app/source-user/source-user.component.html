@@ -1,0 +1,16 @@
+<div class="container">
+  <ul>
+    <li *ngFor="let user of users | async | paginate: { itemsPerPage: 5, currentPage: page }">
+      <div class="d-flex">
+        <h5 class="mb-1">{{user.title}}</h5>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-user"></i> Author: {{user.username}}
+      </div>
+      <p [innerHTML]="user.category"></p>
+      <p [innerHTML]="user.content"></p>
+      <hr>
+    </li>
+  </ul>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

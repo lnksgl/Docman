@@ -1,0 +1,27 @@
+<div class="add-post-content">
+  <div class="container">
+    <div>
+      <h3 class="new-post-title">Update Post</h3>
+    </div>
+    <hr>
+    <form [formGroup]="updatePostForm" (ngSubmit)="updatePost(title.value, category.value, updatePostForm.get('body').value)">
+      <div class="form-group">
+        <label class="post-title">Title</label>
+        <input type="text" name="title" #title [formControlName]="'title'" class="form-control" placeholder="Title" value="{{post.title}}">
+      </div>
+      <div class="form-group">
+        <label class="post-title">Category</label>
+        <input type="text" name="category" #category [formControlName]="'category'" class="form-control" placeholder="Category" value="{{post.category}}">
+      </div>
+      <div class="form-group">
+        <label class="post-content">Body</label>
+        <editor [formControlName]="'body'" [init]="{plugins: 'link'}" [initialValue]="post.content"></editor>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="assertValidate(title.value, category.value, updatePostForm.get('body').value)">Update</button>
+      </div>
+      <a type="button" (click)="deletePost(post.id)" href="" class="fas fa-trash-alt"></a>
+    </form >
+  </div>
+</div>
+
