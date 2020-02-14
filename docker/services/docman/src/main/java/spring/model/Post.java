@@ -11,7 +11,7 @@ import java.time.Instant;
 @Setter
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Post {
+public class    Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

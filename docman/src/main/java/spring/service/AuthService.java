@@ -3,6 +3,10 @@ package spring.service;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +27,10 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@CacheConfig(cacheNames = {"service"})
 public class AuthService {
+
+    private static final Logger LOG = Logger.getLogger(AuthService.class.getName());
 
     UserService userService;
     PasswordEncoder passwordEncoder;
@@ -38,8 +45,10 @@ public class AuthService {
             user.setEmail(registerRequest.getEmail());
             userService.createUser(user);
 
+            LOG.log(Level.INFO,"signUp " + HttpStatus.OK);
             return new ResponseEntity(HttpStatus.OK);
         } else {
+            LOG.log(Level.INFO,"signUp " + HttpStatus.FORBIDDEN);
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
     }
@@ -48,6 +57,7 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
+    @Cacheable
     public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authenticate =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
