@@ -39,11 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests()
-            .antMatchers("/api/v1/signup").anonymous()
-            .antMatchers("/api/v1/login").anonymous()
-            .antMatchers("/api/v1/users").hasRole("ADMIN")
-            .antMatchers("/api/v1/posts").authenticated();
+        httpSecurity.csrf().disable();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

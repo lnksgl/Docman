@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dto.UserDto;
 import spring.exception.PostNotFoundException;
+import spring.exception.UserNotFoundException;
 import spring.mapper.UserMapper;
 import spring.model.User;
 import spring.repository.UserRepository;
@@ -46,13 +47,13 @@ public class UserService {
 
     @Transactional
     public void deleteUser(long id) {
-       userRepository.delete(userRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id)));
+       userRepository.delete(userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("For id " + id)));
         LOG.log(Level.INFO, "delete user success");
     }
 
     @Cacheable
     public UserDto readSingleUser(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("For id " + id));
         LOG.log(Level.INFO, "read single user success");
         return mapFromUserToDto(user);
     }
