@@ -102,7 +102,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.6758621" />
@@ -209,10 +209,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="800" height="677" key="#Inspections/67.27.1853.1053@67.27.1853.1053" timestamp="1581331934007" />
-    <state x="588" y="214" width="1034" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580813341209">
+    <state x="588" y="214" width="1034" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583324661852">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="214" width="1034" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1580813341209" />
+    <state x="588" y="214" width="1034" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1583324661852" />
     <state x="801" y="265" width="374" height="575" key="#com.intellij.ide.util.MemberChooser" timestamp="1581331624093">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -225,22 +225,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1583321636679" />
-    <state width="1807" height="279" key="GridCell.Tab.0.bottom" timestamp="1583323087524">
+    <state width="1807" height="527" key="GridCell.Tab.0.bottom" timestamp="1583324689086">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="279" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1583323087524" />
-    <state width="1807" height="279" key="GridCell.Tab.0.center" timestamp="1583323087523">
+    <state width="1807" height="527" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1583324689086" />
+    <state width="1807" height="527" key="GridCell.Tab.0.center" timestamp="1583324689084">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="279" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1583323087523" />
-    <state width="1807" height="279" key="GridCell.Tab.0.left" timestamp="1583323087522">
+    <state width="1807" height="527" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1583324689084" />
+    <state width="1807" height="527" key="GridCell.Tab.0.left" timestamp="1583324689083">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="279" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1583323087522" />
-    <state width="1807" height="279" key="GridCell.Tab.0.right" timestamp="1583323087524">
+    <state width="1807" height="527" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1583324689083" />
+    <state width="1807" height="527" key="GridCell.Tab.0.right" timestamp="1583324689085">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="279" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1583323087524" />
+    <state width="1807" height="527" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1583324689085" />
     <state width="1807" height="328" key="GridCell.Tab.1.bottom" timestamp="1581332221243">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -261,10 +261,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="263" height="500" key="HiddenNamespacesPopup/67.27.1853.1053@67.27.1853.1053" timestamp="1580811465785" />
-    <state x="634" y="101" width="1024" height="845" key="SettingsEditor" timestamp="1583322789887">
+    <state x="634" y="101" width="1024" height="845" key="SettingsEditor" timestamp="1583324636575">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="634" y="101" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1583322789887" />
+    <state x="634" y="101" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1583324636575" />
     <state x="657" y="253" width="672" height="677" key="run.anything.popup" timestamp="1583321645684">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
