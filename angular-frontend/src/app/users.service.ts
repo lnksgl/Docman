@@ -7,7 +7,7 @@ import {UserPayload} from './source-users/user-payload';
   providedIn: 'root'
 })
 export class UsersService {
-  private url = 'https://localhost:7070/api/v1/users';
+  private url = 'http://localhost:7070/api/v1/users';
 
   constructor(private httpClient: HttpClient) { }
 
